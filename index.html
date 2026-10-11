@@ -2,1313 +2,264 @@
 <html lang="cs">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#6c2cff">
-<meta name="description" content="Zjisti, co brzdí prodej tvých produktů, a získej vlastní akční plán na 7 dní.">
-<title>PRODEJ TO! | Tvoje cesta k objednávkám</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090909">
+<meta name="description" content="Zjisti, co brání tvému produktu v prodeji. Bezplatná diagnostika prezentace a prodeje.">
+<title>PRODEJ TO! | Diagnostika prodeje</title>
 <style>
-:root {
-  --purple: #6c2cff;
-  --pink: #ff3e91;
-  --orange: #ff7438;
-  --yellow: #ffe84a;
-  --teal: #22d6c3;
-  --ink: #211634;
-  --muted: #716b80;
-  --paper: #ffffff;
-  --bg: #f8f5ff;
-  --line: #e9e1f5;
-  --radius: 22px;
-}
-
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  margin: 0;
-  color: var(--ink);
-  background: var(--bg);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-button, input { font: inherit; }
-button { cursor: pointer; }
-
-button:focus-visible,
-input:focus-visible {
-  outline: 3px solid var(--teal);
-  outline-offset: 3px;
-}
-
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  padding: 17px max(20px, calc((100% - 1050px)/2));
-  background: var(--paper);
-  border-bottom: 1px solid var(--line);
-}
-
-.logo {
-  font-size: 23px;
-  font-weight: 1000;
-  letter-spacing: -1px;
-}
-
-.logo .pink { color: var(--pink); }
-.logo .purple { color: var(--purple); }
-
-.top-note {
-  color: var(--muted);
-  font-size: 12px;
-  text-align: right;
-  line-height: 1.4;
-}
-
-main {
-  width: min(100% - 32px, 850px);
-  margin: 0 auto;
-}
-
-.hero {
-  position: relative;
-  overflow: hidden;
-  margin: 26px 0;
-  padding: 55px 25px 48px;
-  border-radius: 30px;
-  background: linear-gradient(135deg, #6c2cff 0%, #a32cff 48%, #ff3e91 100%);
-  color: white;
-  text-align: center;
-  box-shadow: 0 18px 45px #6c2cff25;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  width: 180px;
-  height: 180px;
-  top: -90px;
-  right: -40px;
-  border-radius: 50%;
-  background: var(--yellow);
-  opacity: .9;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  bottom: -45px;
-  left: -25px;
-  border-radius: 50%;
-  background: var(--teal);
-}
-
-.hero > * {
-  position: relative;
-  z-index: 1;
-}
-
-.eyebrow {
-  display: inline-block;
-  padding: 7px 13px;
-  border-radius: 30px;
-  background: var(--yellow);
-  color: var(--ink);
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-h1 {
-  max-width: 700px;
-  margin: 22px auto 17px;
-  font-size: clamp(40px, 8vw, 72px);
-  line-height: 1;
-  letter-spacing: -3px;
-}
-
-.hero h1 span {
-  color: var(--yellow);
-}
-
-.hero > p {
-  max-width: 570px;
-  margin: 0 auto 24px;
-  font-size: 17px;
-  line-height: 1.7;
-}
-
-.hero-points {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 9px;
-  margin: 23px 0 27px;
-}
-
-.pill {
-  padding: 8px 12px;
-  border: 1px solid #ffffff55;
-  border-radius: 30px;
-  background: #ffffff18;
-  color: white;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.primary, .secondary {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  min-height: 51px;
-  padding: 13px 21px;
-  border: 0;
-  border-radius: 14px;
-  font-weight: 900;
-  text-decoration: none;
-  transition: transform .15s, box-shadow .15s;
-}
-
-.primary {
-  background: var(--yellow);
-  color: var(--ink);
-  box-shadow: 0 5px 0 #d8bd20;
-}
-
-.primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 7px 0 #d8bd20;
-}
-
-.secondary {
-  border: 1px solid var(--line);
-  background: white;
-  color: var(--ink);
-}
-
-.section {
-  margin: 25px 0;
-  padding: 30px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: white;
-  box-shadow: 0 12px 35px #32185b0a;
-}
-
-.section h2 {
-  margin: 0 0 10px;
-  font-size: clamp(25px, 5vw, 36px);
-  line-height: 1.2;
-  letter-spacing: -1px;
-}
-
-.section-intro {
-  margin: 0 0 25px;
-  color: var(--muted);
-}
-
-.hidden { display: none !important; }
-
-.progress-wrap { margin-bottom: 27px; }
-
-.progress-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 9px;
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.progress-track {
-  height: 9px;
-  overflow: hidden;
-  border-radius: 20px;
-  background: #eee7f8;
-}
-
-.progress-bar {
-  width: 0;
-  height: 100%;
-  border-radius: 20px;
-  background: linear-gradient(90deg, var(--purple), var(--pink), var(--orange));
-  transition: width .25s;
-}
-
-.question {
-  margin: 0 0 24px;
-  padding: 0 0 23px;
-  border: 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.question legend {
-  width: 100%;
-  margin-bottom: 13px;
-  font-size: 18px;
-  font-weight: 900;
-  line-height: 1.45;
-}
-
-.question .hint {
-  display: block;
-  margin-top: 5px;
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 400;
-}
-
-.options {
-  display: grid;
-  gap: 9px;
-}
-
-.option {
-  display: flex;
-  align-items: flex-start;
-  gap: 11px;
-  padding: 13px 14px;
-  border: 1px solid var(--line);
-  border-radius: 13px;
-  background: white;
-  cursor: pointer;
-  transition: background .15s, border .15s;
-}
-
-.option:hover {
-  border-color: var(--purple);
-  background: #faf7ff;
-}
-
-.option:has(input:checked) {
-  border: 2px solid var(--purple);
-  padding: 12px 13px;
-  background: #f1eaff;
-}
-
-.option input {
-  flex: 0 0 auto;
-  margin-top: 5px;
-  accent-color: var(--purple);
-}
-
-.option span { line-height: 1.5; }
-
-.form-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 22px;
-}
-
-.form-error {
-  margin: 15px 0;
-  padding: 13px;
-  border-radius: 12px;
-  background: #fff0f5;
-  color: #a51e57;
-}
-
-.note {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.priority-card {
-  margin: 14px 0;
-  padding: 19px;
-  border: 1px solid var(--line);
-  border-radius: 17px;
-}
-
-.priority-number {
-  color: var(--pink);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.priority-card h3 {
-  margin: 5px 0 8px;
-  font-size: 21px;
-}
-
-.highlight {
-  margin: 22px 0;
-  padding: 19px;
-  border-radius: 16px;
-  background: #f0e8ff;
-}
-
-.day-card {
-  margin: 12px 0;
-  padding: 17px;
-  border: 1px solid var(--line);
-  border-radius: 15px;
-}
-
-.day-card:has(input:checked) {
-  border-color: var(--teal);
-  background: #f0fffc;
-}
-
-.day-label {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  cursor: pointer;
-}
-
-.day-label input {
-  width: 19px;
-  height: 19px;
-  flex: 0 0 auto;
-  margin-top: 5px;
-  accent-color: var(--purple);
-}
-
-.day-content { flex: 1; }
-.day-title { font-weight: 900; }
-.day-task { display: block; margin-top: 7px; }
-.day-why { display: block; margin-top: 8px; color: var(--muted); font-size: 13px; }
-
-footer {
-  padding: 30px 16px 40px;
-  color: var(--muted);
-  font-size: 12px;
-  text-align: center;
-}
-
-footer p { margin: 5px 0; }
-
-@media (max-width: 600px) {
-  .topbar { padding: 14px 16px; }
-  .logo { font-size: 20px; }
-  .hero { padding: 43px 18px 39px; }
-  h1 { letter-spacing: -1.8px; }
-  .hero > p { font-size: 15px; }
-  .section { padding: 22px 17px; }
-  .question legend { font-size: 16px; }
-  .form-actions { flex-direction: column; }
-  .form-actions button { width: 100%; }
-}
-
-@media print {
-  body { background: white; }
-  .topbar, .hero, #diagnostika, #kontakt, footer,
-  .form-actions { display: none !important; }
-  main { width: 100%; }
-  .section {
-    display: block !important;
-    border: 0;
-    box-shadow: none;
-  }
-}
+:root{--bg:#090909;--card:#141414;--green:#b6ff00;--pink:#ff36b8;--white:#f7f7f7;--muted:#aaa}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--white);font:16px/1.6 Arial,sans-serif}
+header,main,footer{width:min(100% - 32px,720px);margin:auto}
+header{padding:24px 0;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #292929}
+.logo{font-size:22px;font-weight:900;letter-spacing:1px}
+.logo span{color:var(--green)}
+.tag{font-size:11px;color:var(--pink);letter-spacing:2px}
+main{padding:36px 0 55px}
+h1{font-size:clamp(36px,9vw,62px);line-height:1.02;margin:12px 0 20px;letter-spacing:-2px}
+h1 span{color:var(--green)}
+h2{font-size:27px;line-height:1.2}
+p{color:#ccc}
+.kicker{color:var(--pink);font-size:12px;font-weight:bold;letter-spacing:2px;text-transform:uppercase}
+.card{background:var(--card);border:1px solid #303030;border-radius:18px;padding:24px;margin:24px 0}
+.btn{display:block;width:100%;border:0;border-radius:10px;padding:16px 18px;font-weight:900;font-size:15px;cursor:pointer;text-align:center;text-decoration:none;transition:.2s}
+.primary{background:var(--green);color:#080808}
+.primary:hover{box-shadow:0 0 22px #b6ff0055;transform:translateY(-1px)}
+.secondary{background:#222;color:white;border:1px solid #444}
+.pinkbtn{background:var(--pink);color:#100510}
+button:disabled{opacity:.3;cursor:not-allowed}
+.small{font-size:13px;color:var(--muted)}
+.hidden{display:none!important}
+.progressrow{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:10px}
+.track{height:5px;background:#333;border-radius:8px;overflow:hidden;margin-bottom:28px}
+.fill{height:100%;width:0;background:var(--green);transition:width .2s}
+.answers{display:grid;gap:10px;margin:24px 0}
+.answer{padding:15px;border:1px solid #393939;border-radius:11px;cursor:pointer;background:#101010;color:white;text-align:left;font-size:15px}
+.answer:hover{border-color:var(--pink)}
+.answer.selected{border-color:var(--green);background:#b6ff0010;box-shadow:inset 0 0 0 1px var(--green)}
+.nav{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.scorebox{border:1px solid #333;border-radius:12px;padding:16px;margin:12px 0}
+.scorebox strong{color:var(--green)}
+.scoreline{height:6px;background:#333;border-radius:8px;margin-top:8px;overflow:hidden}
+.scoreline div{height:100%;background:var(--pink)}
+.day{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-bottom:1px solid #303030}
+.day input{width:19px;height:19px;accent-color:var(--green);margin-top:5px;flex-shrink:0}
+.day label{cursor:pointer}
+.day b{color:var(--green)}
+.resulttitle{color:var(--pink)}
+.cta{border:1px solid var(--pink);box-shadow:0 0 25px #ff36b810}
+footer{text-align:center;border-top:1px solid #292929;padding:25px 0 35px;font-size:12px;color:#888}
+footer a{color:var(--pink);text-decoration:none}
+a:focus-visible,button:focus-visible,.answer:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
+@media(max-width:420px){.card{padding:18px}h2{font-size:24px}.logo{font-size:19px}}
 </style>
 </head>
-
 <body>
-<header class="topbar">
-  <div class="logo"><span class="purple">PRODEJ</span> <span class="pink">TO!</span></div>
-  <div class="top-note">Méně hádání.<br>Více promyšlených kroků.</div>
+<header>
+ <div class="logo">PRODEJ <span>TO!</span></div>
+ <div class="tag">TVŮJ PRODUKT. TVŮJ RŮST.</div>
 </header>
 
 <main>
-<section class="hero" id="uvod">
-  <span class="eyebrow">Tvůj produkt si zaslouží pozornost</span>
-  <h1>Ukaž ho světu.<br><span>Proměň zájem v objednávky.</span></h1>
-  <p>
-    Vyrábíš šperky, svíčky, kosmetiku, diáře nebo dárky?
-    Zjisti, co může brzdit tvoje objednávky, a získej konkrétní
-    plán, co zlepšit během následujících sedmi dní.
-  </p>
-  <div class="hero-points">
-    <span class="pill">✦ Osobní výsledek</span>
-    <span class="pill">✦ Praktický plán</span>
-    <span class="pill">✦ Bez registrace</span>
-    <span class="pill">✦ Zdarma</span>
-  </div>
-  <button class="primary" type="button" onclick="startDiagnostic()">
-    Jdu na to! →
-  </button>
-  <p class="note" style="color:#ffffffcc;margin-top:16px">
-    Přibližně 3–5 minut. Odpovídej podle své současné situace.
-  </p>
+<section id="intro">
+ <div class="kicker">Bezplatná diagnostika</div>
+ <h1>Tvůj produkt je skvělý.<br><span>Nauč svět proč.</span></h1>
+ <p>Vyrábíš svíčky, šperky, kosmetiku, diáře, dekorace nebo dárkové balíčky? Zjisti, co můžeš zlepšit, aby tvoje prezentace lépe oslovovala zákazníky.</p>
+ <div class="card">
+  <div class="kicker">Co získáš?</div>
+  <h2>12 otázek. Jeden jasnější směr.</h2>
+  <p>Odpovíš na pár jednoduchých otázek a získáš orientační vyhodnocení, nejslabší místo své prezentace a plán na příštích 7 dní.</p>
+  <p class="small">Zabere ti to přibližně 3 minuty. Bez registrace a bez poplatků.</p>
+  <button class="btn primary" onclick="start()">JDU NA TO! →</button>
+ </div>
 </section>
 
-<section class="section hidden" id="diagnostika">
-  <div class="progress-wrap">
-    <div class="progress-top">
-      <span>Tvůj diagnostický průvodce</span>
-      <span id="progress-count">0 z 12</span>
-    </div>
-    <div class="progress-track">
-      <div class="progress-bar" id="progress-bar"></div>
-    </div>
-  </div>
-
-  <h2>Najdeme místo, kde začít.</h2>
-  <p class="section-intro">
-    Tady nejde o dokonalost. Chceme zjistit, co ti už funguje
-    a kde můžeš udělat největší pokrok.
-  </p>
-
-  <form id="diagnostic-form">
-    <div id="questions-container"></div>
-    <div id="form-error" class="form-error hidden" role="alert">
-      Ještě chybí některé odpovědi. Projdi prosím všechny otázky.
-    </div>
-    <div class="form-actions">
-      <button class="primary" type="button" onclick="showResults()">
-        Ukázat můj výsledek →
-      </button>
-      <button class="secondary" type="button" onclick="resetDiagnostic()">
-        Začít znovu
-      </button>
-    </div>
-    <p class="note">Odpovědi zůstávají v tomto prohlížeči.</p>
-  </form>
+<section id="quiz" class="hidden">
+ <div class="progressrow"><span id="count">OTÁZKA 1 / 12</span><span id="percent">8 %</span></div>
+ <div class="track"><div class="fill" id="fill"></div></div>
+ <div class="kicker" id="category"></div>
+ <h2 id="question"></h2>
+ <p id="hint" class="small"></p>
+ <div class="answers" id="answers"></div>
+ <div class="nav">
+  <button class="btn secondary" id="back" onclick="move(-1)">← ZPĚT</button>
+  <button class="btn primary" id="next" onclick="move(1)" disabled>DALŠÍ →</button>
+ </div>
+ <p class="small" style="text-align:center">Tvoje odpovědi zůstávají v tomto okně uložené.</p>
 </section>
 
-<section class="section hidden" id="vysledky" aria-live="polite">
-  <div id="results-content"></div>
-</section>
-
-<section class="section hidden" id="kontakt">
-  <span class="eyebrow">Další krok</span>
-  <h2>Chceš se na svůj prodej podívat podrobněji?</h2>
-  <p class="section-intro">
-    Pokud chceš svůj profil a prezentaci produktů rozebrat individuálně,
-    můžeš si připravit zprávu pro Janu. Zatím se nikam nic automaticky neposílá.
-  </p>
-  <div id="contact-summary"></div>
-  <div class="form-actions">
-    <button class="primary" type="button" onclick="copyContactMessage()">
-      Připravit zprávu pro Janu
-    </button>
-    <button class="secondary" type="button" onclick="window.print()">
-      Vytisknout výsledek
-    </button>
-  </div>
-  <p id="copy-status" class="note" role="status"></p>
+<section id="results" class="hidden">
+ <div class="kicker">Tvoje výsledky</div>
+ <h1>Teď víš,<br><span>kde začít.</span></h1>
+ <div class="card">
+  <div class="kicker">Největší příležitost</div>
+  <h2 id="resultTitle" class="resulttitle"></h2>
+  <p id="resultText"></p>
+  <p id="resultTip"></p>
+ </div>
+ <h2>Tvůj přehled</h2>
+ <p class="small">Vyšší skóre znamená, že máš danou oblast podle svých odpovědí lépe zvládnutou. Výsledek je orientační, ne odborný audit.</p>
+ <div id="scores"></div>
+ <h2>Tvůj akční plán na 7 dní</h2>
+ <p>Malé konkrétní kroky. Nemusíš dělat všechno najednou.</p>
+ <div class="card" id="plan"></div>
+ <div class="card cta">
+  <div class="kicker">Chceš to probrat osobně?</div>
+  <h2>15 minut jen pro tebe a tvůj produkt.</h2>
+  <p>Domluv si se mnou bezplatnou úvodní konzultaci. Podíváme se, co právě potřebuješ a jaký by mohl být tvůj další krok.</p>
+  <a class="btn primary" id="wa" target="_blank" rel="noopener" href="#">DOMLUVIT KONZULTACI ↗</a>
+  <br>
+  <a class="btn pinkbtn" href="https://www.instagram.com/jana.pernicova/" target="_blank" rel="noopener">SLEDOVAT INSTAGRAM ↗</a>
+ </div>
+ <button class="btn secondary" onclick="restart()">↻ VYPLNIT ZNOVU</button>
 </section>
 </main>
 
 <footer>
-  <p><strong>PRODEJ TO!</strong> — praktický průvodce pro malé tvůrce.</p>
-  <p>Výsledek vychází z tvých odpovědí, nikoli z automatické analýzy Instagramu.</p>
-  <p>Konkrétní prodejní výsledky nelze zaručit.</p>
+ <p>Vytvořila <strong>Jana Pernicová</strong> © <span id="year"></span></p>
+ <p>PRODEJ TO! · Diagnostika prezentace a prodeje produktů</p>
+ <a href="https://www.instagram.com/jana.pernicova/" target="_blank" rel="noopener">@jana.pernicova</a>
 </footer>
 
 <script>
-
- const questions = [
-  {
-    id: "product",
-    title: "1. Umíš vysvětlit, proč by si měl někdo koupit právě tvůj produkt?",
-    hint: "Představ si člověka, který tě vůbec nezná.",
-    options: [
-      { text: "Ano, umím jasně vysvětlit jeho přínos.", value: 0 },
-      { text: "Většinou popisuji, co to je a jak to vyrábím.", value: 1 },
-      { text: "Vím, že je skvělý, ale neumím to dobře vysvětlit.", value: 2 },
-      { text: "Zatím jsem nad tím moc nepřemýšlela.", value: 3 }
-    ]
-  },
-  {
-    id: "customer",
-    title: "2. Víš, pro koho je tvůj produkt nejvhodnější?",
-    hint: "Přemýšlej o přáních, potřebách a situacích zákazníka.",
-    options: [
-      { text: "Ano, mám jasnou představu o svém zákazníkovi.", value: 0 },
-      { text: "Mám přibližnou představu, ale je dost široká.", value: 1 },
-      { text: "Můj produkt je podle mě pro každého.", value: 2 },
-      { text: "Nevím, jak svého ideálního zákazníka určit.", value: 3 }
-    ]
-  },
-  {
-    id: "content",
-    title: "3. Co lidé nejčastěji vidí na tvém profilu?",
-    options: [
-      { text: "Produkty, jejich využití, příběhy a přínosy.", value: 0 },
-      { text: "Hlavně hotové výrobky a jejich různé varianty.", value: 2 },
-      { text: "Výrobu, balení objednávek a hotové výrobky.", value: 1 },
-      { text: "Přidávám obsah nepravidelně a bez jasného plánu.", value: 3 }
-    ]
-  },
-  {
-    id: "reels",
-    title: "4. Jak obvykle začínají tvoje Reels?",
-    hint: "První sekundy by měly dát divákovi důvod pokračovat.",
-    options: [
-      { text: "Zajímavou otázkou, myšlenkou nebo situací.", value: 0 },
-      { text: "Ukážu výrobek nebo začátek výroby.", value: 2 },
-      { text: "Mám hezké záběry, ale začátek moc neřeším.", value: 2 },
-      { text: "Reels skoro netvořím, protože nevím, co natáčet.", value: 3 }
-    ]
-  },
-  {
-    id: "story",
-    title: "5. Vysvětluješ také, proč by lidé měli tvůj produkt chtít?",
-    options: [
-      { text: "Ano, ukazuji jeho využití, přínos nebo příběh.", value: 0 },
-      { text: "Někdy, ale většinou ukazuji samotný výrobek.", value: 1 },
-      { text: "Nevím, co bych k výrobku měla říkat.", value: 2 },
-      { text: "Myslím, že by měl produkt mluvit sám za sebe.", value: 3 }
-    ]
-  },
-  {
-    id: "trust",
-    title: "6. Co pomáhá novému člověku získat na tvém profilu důvěru?",
-    options: [
-      { text: "Ukazuji proces, materiály, zkušenosti zákazníků nebo sebe.", value: 0 },
-      { text: "Něco z toho ukazuji, ale nepravidelně.", value: 1 },
-      { text: "Můj profil tvoří hlavně fotografie výrobků.", value: 2 },
-      { text: "Nevím, jak důvěru v obsahu budovat.", value: 3 }
-    ]
-  },
-  {
-    id: "order",
-    title: "7. Je jasné, jak si může návštěvník produkt objednat?",
-    options: [
-      { text: "Ano. Cena, dostupnost i způsob objednání jsou jasné.", value: 0 },
-      { text: "Většinou ano, ale některé informace musí dohledat.", value: 1 },
-      { text: "Musí mi napsat, aby zjistil základní informace.", value: 2 },
-      { text: "Nemám jasně nastavený postup objednání.", value: 3 }
-    ]
-  },
-  {
-    id: "cta",
-    title: "8. Říkáš lidem, co mohou po zhlédnutí příspěvku udělat?",
-    options: [
-      { text: "Ano, nabízím konkrétní další krok.", value: 0 },
-      { text: "Občas vyzvu lidi k reakci nebo objednávce.", value: 1 },
-      { text: "Většinou jen zveřejním obsah a čekám.", value: 2 },
-      { text: "Nevím, jak lidi přirozeně navést k nákupu.", value: 3 }
-    ]
-  },
-  {
-    id: "profile",
-    title: "9. Pochopí nový návštěvník během pár sekund, co prodáváš?",
-    options: [
-      { text: "Ano, je jasné, co nabízím, komu a kde nakoupit.", value: 0 },
-      { text: "Většina informací tam je, ale něco bych zpřehlednila.", value: 1 },
-      { text: "Profil vypadá hezky, ale hlavně jako katalog výrobků.", value: 2 },
-      { text: "Profil jsem dlouho neřešila.", value: 3 }
-    ]
-  },
-  {
-    id: "consistency",
-    title: "10. Jak pravidelně zveřejňuješ obsah?",
-    options: [
-      { text: "Mám udržitelný rytmus a přibližný plán.", value: 0 },
-      { text: "Publikuji pravidelně, ale často improvizuji.", value: 1 },
-      { text: "Přidávám hodně příspěvků najednou a pak nic.", value: 2 },
-      { text: "Tvorbu často odkládám nebo na ni nemám čas.", value: 3 }
-    ]
-  },
-  {
-    id: "results",
-    title: "11. Co se děje po zveřejnění tvého obsahu?",
-    options: [
-      { text: "Přicházejí dotazy nebo objednávky a sleduji výsledky.", value: 0 },
-      { text: "Lidé reagují, ale málo nakupují.", value: 1 },
-      { text: "Mám málo reakcí, návštěv nebo zpráv.", value: 2 },
-      { text: "Výsledky nesleduji, takže nevím, co funguje.", value: 3 }
-    ]
-  },
-  {
-    id: "goal",
-    title: "12. Co tě při propagaci produktů brzdí nejvíc?",
-    options: [
-      { text: "Nevím, jak produkt zajímavě prezentovat.", value: 0, tag: "content" },
-      { text: "Nevím, co natáčet a říkat v Reels.", value: 1, tag: "reels" },
-      { text: "Lidé mě sledují, ale málo nakupují.", value: 2, tag: "order" },
-      { text: "Chybí mi čas, systém a pravidelnost.", value: 3, tag: "consistency" },
-      { text: "Nevím, komu přesně produkt nabízet.", value: 4, tag: "customer" },
-      { text: "Mám pocit, že jsem už vyzkoušela všechno.", value: 5, tag: "strategy" }
-    ]
-  }
-];
-
-const areaInfo = {
-  product: {
-    name: "Hodnota produktu",
-    description: "Lidé potřebují pochopit nejen to, co vyrábíš, ale také proč by to pro ně mohlo být důležité.",
-    action: "Napiš tři důvody, proč si zákazník může tvůj produkt vybrat. Zaměř se na jeho využití, přínos a situaci, ve které se hodí."
-  },
-  customer: {
-    name: "Znalost zákazníka",
-    description: "Když mluvíš ke všem, může být obtížné, aby se v tvém obsahu někdo skutečně poznal.",
-    action: "Popiš jednoho zákazníka: co si přeje, co řeší, při jaké příležitosti produkt potřebuje a co by mu mohlo bránit v nákupu."
-  },
-  content: {
-    name: "Obsah, který prodává",
-    description: "Krásná fotografie výrobku nemusí sama odpovědět na otázku, proč by ho měl člověk chtít.",
-    action: "Připrav tři témata: přání zákazníka, využití produktu v běžném životě a příběh, který stojí za jeho vznikem."
-  },
-  reels: {
-    name: "Začátky Reels",
-    description: "Pěkný záběr není automaticky důvod zůstat u videa. Pomáhá začít něčím, co diváka zajímá.",
-    action: "Natoč krátké video, které začne výsledkem, otázkou nebo konkrétní situací zákazníka. Potom ukaž výrobek."
-  },
-  story: {
-    name: "Příběh a užitek",
-    description: "Produkt získává význam, když si člověk dokáže představit, jak ho použije nebo jaký zážitek mu přinese.",
-    action: "Vyber jeden produkt a ukaž ho v konkrétní situaci. Vysvětli, komu se hodí a co na něm zákazníci mohou ocenit."
-  },
-  trust: {
-    name: "Budování důvěry",
-    description: "Člověk, který tě nezná, může potřebovat důvod věřit kvalitě výrobku i průběhu nákupu.",
-    action: "Ukaž část výroby, materiály, balení objednávky nebo odpověď na častou otázku zákazníků."
-  },
-  order: {
-    name: "Cesta k objednávce",
-    description: "Zájem se může ztratit, pokud člověk neví, kolik produkt stojí, zda je dostupný nebo jak ho koupit.",
-    action: "Zkontroluj cenu, dostupnost, varianty, dopravu a postup objednání. Informace by měly být snadno dohledatelné."
-  },
-  cta: {
-    name: "Výzva k dalšímu kroku",
-    description: "Příspěvek může zaujmout, ale bez dalšího kroku nemusí člověk vědět, co má udělat.",
-    action: "Ke svému příštímu příspěvku přidej přirozenou výzvu. Například prohlédnout varianty nebo napsat s dotazem."
-  },
-  profile: {
-    name: "Instagram profil",
-    description: "Profil má rychle vysvětlit, co nabízíš, komu se produkt hodí a jak se nakupuje.",
-    action: "Uprav popis profilu tak, aby stručně vysvětlil, co vyrábíš, pro koho a kde si to lidé mohou objednat."
-  },
-  consistency: {
-    name: "Udržitelná pravidelnost",
-    description: "Příliš složitý plán může vyčerpat. Lepší je menší rytmus, který skutečně zvládneš.",
-    action: "Naplánuj tři příspěvky na příští týden: o zákazníkovi, o využití produktu a ze zákulisí."
-  },
-  results: {
-    name: "Sledování výsledků",
-    description: "Bez jednoduchého sledování těžko poznáš, který obsah přináší zájem a který vede k objednávkám.",
-    action: "U posledních pěti příspěvků si poznamenej téma, dosah, reakce, dotazy a objednávky, pokud tato čísla máš."
-  }
+const areas={
+ product:{
+  name:"Hodnota produktu",
+  title:"Ukaž zákazníkům, proč ho chtějí.",
+  text:"Lidé potřebují pochopit nejen to, co vyrábíš, ale také proč by to pro ně mělo být důležité. Pomoz jim představit si produkt ve vlastním životě.",
+  tip:"Zkus ukázat, jaký problém produkt řeší, jaký okamžik zpříjemní nebo komu udělá radost.",
+  days:[
+   "Sepiš tři konkrétní důvody, proč si zákazník vybere právě tvůj výrobek.",
+   "Popiš jednoho člověka, kterému je tvůj produkt určen.",
+   "Natoč nebo vyfoť produkt v reálném použití.",
+   "Vysvětli jeden detail, který dělá tvůj výrobek výjimečným.",
+   "Odpověz na jednu častou otázku zákazníků.",
+   "Připrav příspěvek o tom, komu a proč by produkt udělal radost.",
+   "Podívej se na svou prezentaci a uprav jednu větu o přínosu produktu."
+  ]
+ },
+ content:{
+  name:"Obsah a prezentace",
+  title:"Ukaž víc než hotový výrobek.",
+  text:"Krásná fotografie je dobrý začátek. Zákazníky ale může přitáhnout také příběh vzniku, práce tvých rukou, detaily, použití a radost, kterou produkt přináší.",
+  tip:"Střídej ukázky hotových výrobků s procesem výroby, příběhy, detaily a odpověďmi na otázky.",
+  days:[
+   "Vyfoť nebo natoč, jak tvůj produkt vzniká.",
+   "Ukaž detail, kterého si zákazník na první pohled nevšimne.",
+   "Sdílej příběh, proč jsi začala tento výrobek tvořit.",
+   "Připrav ukázku produktu při používání.",
+   "Odpověz ve Stories na jednu častou otázku.",
+   "Vytvoř příspěvek, který ukáže, pro koho se produkt hodí.",
+   "Naplánuj si tři různé typy obsahu na příští týden."
+  ]
+ },
+ profile:{
+  name:"Instagramový profil",
+  title:"Pomoz lidem rychle se zorientovat.",
+  text:"Když někdo objeví tvůj profil, měl by během několika sekund pochopit, co tvoříš, pro koho to je a kde si může výrobek objednat.",
+  tip:"Zkontroluj své bio, profilovou fotografii, připnuté příspěvky a cestu k objednávce.",
+  days:[
+   "Uprav bio tak, aby bylo jasné, co vyrábíš a pro koho.",
+   "Zkontroluj, zda zákazník snadno najde cestu k objednávce.",
+   "Připrav příspěvek, který představí tebe a tvoji tvorbu.",
+   "Ukaž tři nejoblíbenější nebo nejtypičtější výrobky.",
+   "Zkontroluj výběry Stories a odstraň zastaralé informace.",
+   "Přidej jasnou výzvu k objednávce do jednoho příspěvku.",
+   "Prohlédni si svůj profil očima člověka, který tě vidí poprvé."
+  ]
+ },
+ trust:{
+  name:"Důvěra a objednávky",
+  title:"Usnadni zákazníkům rozhodnutí.",
+  text:"Zákazník potřebuje vědět, co dostane, kolik to stojí a jak nákup probíhá. Důvěru pomáhají budovat také reálné ukázky, recenze a otevřená komunikace.",
+  tip:"Zkontroluj cenu, dostupnost, dopravu, možnosti objednání a informace, které člověk potřebuje před nákupem.",
+  days:[
+   "Sepiš nejčastější otázky před objednávkou.",
+   "Jasně vysvětli, jak si lze výrobek objednat.",
+   "Ukaž balení objednávky nebo její přípravu.",
+   "Pokud máš svolení zákazníka, sdílej jeho skutečnou zpětnou vazbu.",
+   "Zkontroluj, zda jsou ceny a podmínky nákupu snadno dostupné.",
+   "Připrav příspěvek, který odpoví na častou obavu zákazníka.",
+   "Přidej jasnou, přirozenou výzvu k objednávce."
+  ]
+ }
 };
 
-  function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#039;"
-  })[char]);
+const qs=[
+ {a:"product",q:"Když někdo poprvé uvidí tvůj výrobek, jak snadno pochopí, proč by ho měl chtít?",o:["Okamžitě pochopí jeho přínos.","Většinou to pochopí z popisu.","Spíš ukazuji, jak vypadá.","Nevím, co by ho mělo přesvědčit."]},
+ {a:"product",q:"Jak vysvětluješ, čím je tvůj výrobek výjimečný?",o:["Mám jasně pojmenované konkrétní výhody.","Občas zmíním, co je na něm zvláštní.","Většinou mluvím o materiálu a vzhledu.","Zatím to neumím dobře vysvětlit."]},
+ {a:"product",q:"Víš, pro koho je tvůj produkt nejvhodnější?",o:["Ano, dokážu popsat svého ideálního zákazníka.","Mám přibližnou představu.","Chci, aby se líbil co nejvíce lidem.","Zatím v tom nemám jasno."]},
+ {a:"content",q:"Co nejčastěji zveřejňuješ na sociálních sítích?",o:["Střídám ukázky, příběhy, proces a užitek.","Většinou hotové výrobky a novinky.","Hlavně produktové fotografie.","Přidávám příspěvky jen výjimečně."]},
+ {a:"content",q:"Ukazuješ lidem, jak tvoje výrobky vznikají nebo se používají?",o:["Pravidelně a přirozeně.","Občas ukážu proces nebo detail.","Většinou sdílím hotový produkt.","Skoro nikdy."]},
+ {a:"content",q:"Máš plán, o čem budeš zveřejňovat příspěvky?",o:["Ano, mám jednoduchý plán a různá témata.","Někdy si témata připravuji dopředu.","Publikuji hlavně, když mám čas.","Často nevím, co zveřejnit."]},
+ {a:"profile",q:"Pochopí nový návštěvník z tvého profilu, co vyrábíš a pro koho?",o:["Ano, je to jasné na první pohled.","Většinou ano, ale něco chybí.","Musí si informace hledat v příspěvcích.","Upřímně nevím."]},
+ {a:"profile",q:"Jak snadno člověk zjistí, jak si může tvůj výrobek objednat?",o:["Velmi snadno, cesta je jasná.","Informace najde, když chvíli hledá.","Musí mi většinou napsat a doptat se.","Nemám jasně nastavený postup."]},
+ {a:"profile",q:"Které příspěvky máš na profilu připnuté nebo snadno dohledatelné?",o:["Představení, výrobky a informace k objednávce.","Některé důležité příspěvky.","Většinou to neřeším.","Nemám žádný systém."]},
+ {a:"trust",q:"Jak zákazníci poznají, že se na tebe mohou spolehnout?",o:["Ukazuji reálnou tvorbu, recenze a informace.","Něco z toho sdílím občas.","Spoléhám hlavně na fotografie produktů.","Nevím, jak důvěru budovat."]},
+ {a:"trust",q:"Jsou cena, dostupnost a podmínky nákupu jasné?",o:["Ano, zákazník vše snadno najde.","Většinu informací uvádím.","Některé věci vysvětluji až v soukromých zprávách.","Zákazníci se mě často musí doptávat."]},
+ {a:"trust",q:"Jak často zákazníky jasně vyzveš k dalšímu kroku?",o:["Přirozeně jim řeknu, kde objednat nebo se zeptat.","Občas přidám výzvu k akci.","Mám strach, abych nepůsobila příliš prodejně.","Většinou žádnou výzvu nepřidávám."]}
+];
+
+let index=0,answers=Array(qs.length).fill(null);
+const $=id=>document.getElementById(id);
+$("year").textContent=new Date().getFullYear();
+$("wa").href="https://wa.me/420773664342?text="+encodeURIComponent("Ahoj Jani, vyplnila jsem diagnostiku PRODEJ TO! a ráda bych se domluvila na bezplatné 15minutové konzultaci.");
+
+function show(id){["intro","quiz","results"].forEach(x=>$(x).classList.toggle("hidden",x!==id));window.scrollTo({top:0,behavior:"smooth"});}
+function start(){index=0;answers=Array(qs.length).fill(null);show("quiz");render();}
+function render(){
+ const q=qs[index];
+ $("count").textContent="OTÁZKA "+(index+1)+" / "+qs.length;
+ $("percent").textContent=Math.round((index+1)/qs.length*100)+" %";
+ $("fill").style.width=(index+1)/qs.length*100+"%";
+ $("category").textContent=areas[q.a].name;
+ $("question").textContent=q.q;
+ $("hint").textContent="Vyber odpověď, která nejlépe vystihuje tvoji současnou situaci.";
+ $("answers").innerHTML="";
+ q.o.forEach((txt,i)=>{
+  const b=document.createElement("button");
+  b.className="answer"+(answers[index]===i?" selected":"");
+  b.textContent=String.fromCharCode(65+i)+". "+txt;
+  b.onclick=()=>{answers[index]=i;render();};
+  $("answers").appendChild(b);
+ });
+ $("back").disabled=index===0;
+ $("next").disabled=answers[index]===null;
+ $("next").textContent=index===qs.length-1?"VYHODNOTIT →":"DALŠÍ →";
 }
-
-function startDiagnostic() {
-  document.getElementById("uvod").classList.add("hidden");
-  document.getElementById("diagnostika").classList.remove("hidden");
-  document.getElementById("diagnostika").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
+function move(d){
+ if(d===1&&answers[index]===null)return;
+ index+=d;
+ if(index<0)index=0;
+ if(index>=qs.length){result();return;}
+ render();
 }
-
-function renderQuestions() {
-  const container = document.getElementById("questions-container");
-
-  container.innerHTML = questions.map(q => `
-    <fieldset class="question">
-      <legend>
-        ${escapeHTML(q.title)}
-        ${q.hint ? `<span class="hint">${escapeHTML(q.hint)}</span>` : ""}
-      </legend>
-      <div class="options">
-        ${q.options.map((option, index) => `
-          <label class="option">
-            <input type="radio" name="${q.id}" value="${index}"
-              onchange="updateProgress()">
-            <span>${escapeHTML(option.text)}</span>
-          </label>
-        `).join("")}
-      </div>
-    </fieldset>
-  `).join("");
-
-  updateProgress();
+function result(){
+ const keys=Object.keys(areas),scores={};
+ keys.forEach(k=>{
+  const vals=qs.map((q,i)=>q.a===k?3-answers[i]:null).filter(v=>v!==null);
+  scores[k]=Math.round(vals.reduce((a,b)=>a+b,0)/vals.length/3*100);
+ });
+ const weakest=keys.reduce((a,b)=>scores[a]<=scores[b]?a:b);
+ const data=areas[weakest];
+ $("resultTitle").textContent=data.title;
+ $("resultText").textContent=data.text;
+ $("resultTip").textContent="První krok: "+data.tip;
+ $("scores").innerHTML=keys.map(k=>'<div class="scorebox"><strong>'+areas[k].name+'</strong><span style="float:right">'+scores[k]+' %</span><div class="scoreline"><div style="width:'+scores[k]+'%"></div></div></div>').join("");
+ const tasks=data.days;
+ $("plan").innerHTML=tasks.map((t,i)=>'<div class="day"><input type="checkbox" id="day'+i+'"><label for="day'+i+'"><b>DEN '+(i+1)+'</b><br>'+t+'</label></div>').join("");
+ tasks.forEach((_,i)=>{
+  const c=$("day"+i),key="prodejto-day-"+i;
+  c.checked=localStorage.getItem(key)==="1";
+  c.onchange=()=>localStorage.setItem(key,c.checked?"1":"0");
+ });
+ $("wa").href="https://wa.me/420773664342?text="+encodeURIComponent("Ahoj Jani, vyplnila jsem diagnostiku PRODEJ TO! a ráda bych se domluvila na bezplatné 15minutové konzultaci. Moje největší příležitost: "+data.name+".");
+ show("results");
 }
-
-function updateProgress() {
-  const answered = questions.filter(q =>
-    document.querySelector(`input[name="${q.id}"]:checked`)
-  ).length;
-
-  document.getElementById("progress-count").textContent =
-    `${answered} z ${questions.length}`;
-
-  document.getElementById("progress-bar").style.width =
-    `${answered / questions.length * 100}%`;
-
-  document.getElementById("form-error").classList.add("hidden");
+function restart(){
+ Object.keys(localStorage).filter(k=>k.startsWith("prodejto-day-")).forEach(k=>localStorage.removeItem(k));
+ start();
 }
-
-function getAnswers() {
-  const answers = {};
-
-  for (const q of questions) {
-    const selected = document.querySelector(
-      `input[name="${q.id}"]:checked`
-    );
-
-    if (!selected) return null;
-
-    const option = q.options[Number(selected.value)];
-
-    answers[q.id] = {
-      index: Number(selected.value),
-      value: option.value,
-      text: option.text,
-      tag: option.tag || null
-    };
-  }
-
-  return answers;
-}
-
-function calculateResults(answers) {
-  const scores = {};
-
-  Object.keys(areaInfo).forEach(key => {
-    scores[key] = 0;
-  });
-
-  const mapping = {
-    product: "product",
-    customer: "customer",
-    content: "content",
-    reels: "reels",
-    story: "story",
-    trust: "trust",
-    order: "order",
-    cta: "cta",
-    profile: "profile",
-    consistency: "consistency",
-    results: "results"
-  };
-
-  Object.entries(mapping).forEach(([questionId, area]) => {
-    scores[area] += answers[questionId].value;
-  });
-
-  const obstacle = answers.goal.tag;
-
-  if (obstacle === "strategy") {
-    scores.content += 1;
-    scores.customer += 1;
-    scores.results += 1;
-  } else if (scores[obstacle] !== undefined) {
-    scores[obstacle] += 2;
-  }
-
-  const areas = Object.keys(scores).map(key => ({
-    key,
-    name: areaInfo[key].name,
-    score: scores[key],
-    description: areaInfo[key].description,
-    action: areaInfo[key].action
-  }));
-
-  areas.sort((a, b) => b.score - a.score);
-
-  const total = Object.keys(mapping).reduce(
-    (sum, id) => sum + answers[id].value, 0
-  );
-
-  const average = total / Object.keys(mapping).length;
-
-  let level;
-  let levelText;
-
-  if (average < 0.8) {
-    level = "Máš dobrý základ!";
-    levelText = "V řadě oblastí už máš dobrý základ. Teď se zaměříme na konkrétní místa, která mohou pomoci proměnit zájem v objednávky.";
-  } else if (average < 1.7) {
-    level = "Je čas posunout prodej dál.";
-    levelText = "Některé části prezentace už máš zvládnuté, jiné potřebují pozornost. Nemusíš měnit všechno najednou. Začni několika důležitými kroky.";
-  } else if (average < 2.4) {
-    level = "Pojďme tomu dát nový systém!";
-    levelText = "Tvoje odpovědi ukazují více oblastí, které můžeš zlepšit. Nemusíš vyřešit všechno současně. Začneme tím nejdůležitějším.";
-  } else {
-    level = "Začneme od základů.";
-    levelText = "Podle tvých odpovědí se vyplatí posílit základy prezentace a cesty k nákupu. Vybereme jednoduché kroky, které můžeš skutečně udělat.";
-  }
-
-  return {
-    areas,
-    top: areas.slice(0, 3),
-    level,
-    levelText,
-    obstacle,
-    createdAt: new Date().toISOString()
-  };
-}
-
-function showResults() {
-  const answers = getAnswers();
-
-  if (!answers) {
-    document.getElementById("form-error").classList.remove("hidden");
-
-    const firstMissing = questions.find(q =>
-      !document.querySelector(`input[name="${q.id}"]:checked`)
-    );
-
-    if (firstMissing) {
-      document.querySelector(`input[name="${firstMissing.id}"]`)
-        .closest(".question")
-        .scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-
-    return;
-  }
-
-  const results = calculateResults(answers);
-
-  localStorage.setItem("prodejto_answers", JSON.stringify(answers));
-  localStorage.setItem("prodejto_results", JSON.stringify(results));
-
-  renderResults(results, answers);
-
-  document.getElementById("vysledky").classList.remove("hidden");
-  document.getElementById("kontakt").classList.remove("hidden");
-
-  document.getElementById("vysledky").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-}
-
-function renderResults(results, answers) {
-  const topCards = results.top.map((area, index) => `
-    <article class="priority-card">
-      <div class="priority-number">Priorita ${index + 1}</div>
-      <h3>${escapeHTML(area.name)}</h3>
-      <p>${escapeHTML(area.description)}</p>
-      <div class="progress-track">
-        <div class="progress-bar" style="width:${Math.min(100, area.score / 3 * 100)}%"></div>
-      </div>
-      <p class="note">Ukazatel vychází z tvých odpovědí. Nejde o měření kvality podnikání.</p>
-    </article>
-  `).join("");
-
-  const obstacleName = results.obstacle === "strategy"
-    ? "Směr a strategie"
-    : areaInfo[results.obstacle]
-      ? areaInfo[results.obstacle].name
-      : "Směr a strategie";
-
-  document.getElementById("results-content").innerHTML = `
-    <span class="eyebrow">Tvůj osobní výsledek</span>
-    <h2 style="margin-top:16px">${escapeHTML(results.level)}</h2>
-    <p>${escapeHTML(results.levelText)}</p>
-
-    <div class="highlight">
-      <strong>🔥 Tvoje hlavní priorita</strong>
-      <p style="margin-bottom:0">
-        <strong>${escapeHTML(results.top[0].name)}</strong>.
-        Tady začneme, protože právě tato oblast má podle tvých odpovědí
-        největší prostor ke zlepšení.
-      </p>
-    </div>
-
-    <h2>Co může brzdit tvůj prodej?</h2>
-    <p class="section-intro">
-      Tři oblasti, na které se vyplatí zaměřit.
-    </p>
-
-    ${topCards}
-
-    <div class="highlight">
-      <strong>🎯 Překážka, kterou jsi označila</strong>
-      <p style="margin-bottom:0">
-        ${escapeHTML(obstacleName)}.
-        Zohledníme ji také v tvém akčním plánu.
-      </p>
-    </div>
-
-    <h2 style="margin-top:30px">Tvůj akční plán na 7 dní</h2>
-    <p class="section-intro">
-      Konkrétní kroky, které můžeš postupně odškrtávat.
-      Nemusíš každý den vytvářet dokonalý obsah.
-    </p>
-
-    <div id="plan-container"></div>
-
-    <div class="highlight" style="margin-top:26px">
-      <strong>💥 Pamatuj</strong>
-      <p style="margin-bottom:0">
-        Tvým cílem není zveřejňovat více obsahu za každou cenu.
-        Cílem je, aby lidé lépe pochopili hodnotu tvého produktu
-        a věděli, jak si ho mohou koupit.
-      </p>
-    </div>
-  `;
-
-  renderPlan(results, answers);
-
-  document.getElementById("contact-summary").innerHTML = `
-    <div class="priority-card">
-      <strong>Tvůj souhrn pro individuální rozbor</strong>
-      <p style="margin-bottom:0">
-        Hlavní priorita: ${escapeHTML(results.top[0].name)}.
-        Další oblasti: ${escapeHTML(results.top[1].name)}
-        a ${escapeHTML(results.top[2].name)}.
-      </p>
-    </div>
-  `;
-
-  window.prodejtoCurrent = { results, answers };
-    }
-
-  function buildSevenDayPlan(results, answers) {
-  const first = results.top[0].key;
-  const second = results.top[1].key;
-  const third = results.top[2].key;
-
-  const taskBank = {
-    product: [
-      "Vyber jeden výrobek a napiš tři důvody, proč by si ho zákazník mohl vybrat.",
-      "Připrav příspěvek, který vysvětluje přínos produktu, nejen jeho vlastnosti.",
-      "Zeptej se člověka z cílové skupiny, co by potřeboval vědět před nákupem."
-    ],
-    customer: [
-      "Popiš jednoho ideálního zákazníka, jeho přání, potřeby a obavy.",
-      "Sepiš tři situace, ve kterých by tvůj produkt mohl být užitečný nebo vhodný jako dárek.",
-      "Vytvoř příspěvek zaměřený na jednu konkrétní potřebu zákazníka."
-    ],
-    content: [
-      "Vymysli tři témata pro jeden výrobek: jeho přínos, použití a příběh.",
-      "Ukaž produkt v běžném životě, ne pouze na produktové fotografii.",
-      "Připrav obsah, který odpovídá na jednu častou otázku zákazníků."
-    ],
-    reels: [
-      "Napiš tři začátky videa: otázku, problém zákazníka a zajímavý výsledek.",
-      "Natoč krátké video, které začne tím nejzajímavějším a až potom ukáže výrobek.",
-      "Podívej se na video bez zvuku. Je z prvních sekund jasné, proč pokračovat?"
-    ],
-    story: [
-      "Vyber produkt a popiš jednu situaci, ve které ho zákazník využije.",
-      "Připrav krátký příběh o tom, proč výrobek vznikl nebo jak ho vyrábíš.",
-      "Ukaž konkrétní užitek nebo zážitek spojený s tvým produktem."
-    ],
-    trust: [
-      "Ukaž část výroby, balení nebo výběru materiálů a vysvětli, na čem ti záleží.",
-      "Připrav odpověď na jednu otázku, kterou zákazník může mít před objednávkou.",
-      "Ukaž způsob, jak kontroluješ kvalitu svých výrobků."
-    ],
-    order: [
-      "Projdi svůj profil očima nového návštěvníka a zkontroluj cenu i postup objednání.",
-      "Ověř, zda jsou dostupnost, varianty a doprava snadno dohledatelné.",
-      "Připrav příspěvek, který vysvětluje, jak si produkt objednat."
-    ],
-    cta: [
-      "Přidej ke svému příštímu příspěvku jednu jasnou výzvu k dalšímu kroku.",
-      "Připrav příspěvek, který zákazníka přirozeně vybídne k výběru nebo dotazu.",
-      "Zkontroluj poslední tři příspěvky. Ví člověk, co může udělat dál?"
-    ],
-    profile: [
-      "Uprav popis profilu tak, aby bylo jasné, co vyrábíš, pro koho a kde nakoupit.",
-      "Zkontroluj odkaz v profilu a připnuté příspěvky.",
-      "Požádej někoho, kdo tě nezná, aby řekl, co z profilu pochopil za deset sekund."
-    ],
-    consistency: [
-      "Naplánuj tři témata na příští týden a přiřaď jim konkrétní dny.",
-      "Při výrobě nebo balení si připrav několik krátkých záběrů do zásoby.",
-      "Vytvoř si jednoduchý seznam nápadů pro chvíle, kdy nevíš, co zveřejnit."
-    ],
-    results: [
-      "Vyber posledních pět příspěvků a poznamenej si dostupné výsledky.",
-      "Zaznamenej, které téma přineslo reakce, návštěvy profilu nebo dotazy.",
-      "Vyber jeden obsah, který stojí za zopakování nebo nové zpracování."
-    ]
-  };
-
-  const firstTasks = taskBank[first] || taskBank.content;
-  const secondTasks = taskBank[second] || taskBank.customer;
-  const thirdTasks = taskBank[third] || taskBank.order;
-
-  const plan = [
-    {
-      title: "Den 1 — Vyber svou prioritu",
-      task: firstTasks[0],
-      why: "Začínáme u oblasti, která podle tvých odpovědí potřebuje nejvíce pozornosti."
-    },
-    {
-      title: "Den 2 — Poznej zákazníka",
-      task: taskBank.customer[0],
-      why: "Dobrá prezentace začíná pochopením člověka, kterému produkt nabízíš."
-    },
-    {
-      title: "Den 3 — Ukaž produkt jinak",
-      task: firstTasks[1],
-      why: "Pomoz lidem představit si produkt ve vlastním životě."
-    },
-    {
-      title: "Den 4 — Posil důvěru",
-      task: taskBank.trust[0],
-      why: "Zákazník potřebuje důvod věřit produktu i člověku, který ho vytváří."
-    },
-    {
-      title: "Den 5 — Usnadni nákup",
-      task: taskBank.order[0],
-      why: "Jasný další krok může odstranit zbytečné překážky."
-    },
-    {
-      title: "Den 6 — Vytvoř obsah s cílem",
-      task: secondTasks[1],
-      why: "Každý příspěvek by měl mít svůj účel."
-    },
-    {
-      title: "Den 7 — Vyhodnoť svůj týden",
-      task: "Zapiš si, co jsi vyzkoušela, co ti šlo a co chceš příště zopakovat. " + thirdTasks[0],
-      why: "Pokrok znamená i to, že lépe rozumíš svým zákazníkům a svému obsahu."
-    }
-  ];
-
-  if (answers.goal.tag === "consistency") {
-    plan[2].task = "Naplánuj jeden krátký příspěvek a jeden příběh. Zvol rozsah, který zvládneš bez přetížení.";
-    plan[5].task = "Připrav si několik nápadů do zásoby, abys nemusela pokaždé začínat od nuly.";
-  }
-
-  if (answers.goal.tag === "reels") {
-    plan[2].task = "Natoč krátké video s jasným začátkem. Začni otázkou, výsledkem nebo situací zákazníka.";
-    plan[5].task = "Připrav tři začátky pro další Reels a vyber ten nejkonkrétnější.";
-  }
-
-  if (answers.goal.tag === "order") {
-    plan[4].task = "Otestuj nákupní cestu: zjisti cenu, dostupnost, varianty i dopravu tak, jak by to udělal nový zákazník.";
-  }
-
-  if (answers.goal.tag === "customer") {
-    plan[1].task = "Popiš jednoho zákazníka, jeho přání, obavy a situaci, ve které by tvůj produkt mohl využít.";
-  }
-
-  if (answers.goal.tag === "strategy") {
-    plan[0].task = "Vyber jednu jedinou oblast, kterou chceš tento týden zlepšit. Ostatní nápady si zatím odlož.";
-    plan[6].task = "Zhodnoť, co jsi vyzkoušela a co chceš příští týden zopakovat. Neposuzuj svůj úspěch jen podle okamžitých objednávek.";
-  }
-
-  return plan;
-}
-
-function renderPlan(results, answers) {
-  const plan = buildSevenDayPlan(results, answers);
-
-  const saved = JSON.parse(
-    localStorage.getItem("prodejto_completed") || "{}"
-  );
-
-  const container = document.getElementById("plan-container");
-
-  container.innerHTML = plan.map((day, index) => `
-    <article class="day-card">
-      <label class="day-label">
-        <input type="checkbox" data-day="${index}"
-          ${saved[index] ? "checked" : ""}
-          onchange="toggleDay(${index}, this.checked)">
-        <span class="day-content">
-          <span class="day-title">${escapeHTML(day.title)}</span>
-          <span class="day-task">${escapeHTML(day.task)}</span>
-          <span class="day-why">PROČ: ${escapeHTML(day.why)}</span>
-        </span>
-      </label>
-    </article>
-  `).join("") + `
-    <div class="highlight">
-      <strong id="plan-progress-label">Splněno 0 ze 7 úkolů</strong>
-      <div class="progress-track" style="margin-top:10px">
-        <div id="plan-progress-bar" class="progress-bar"></div>
-      </div>
-    </div>
-    <button class="secondary" type="button" onclick="resetPlanProgress()">
-      Vynulovat odškrtnuté úkoly
-    </button>
-  `;
-
-  updatePlanProgress();
-}
-
-function toggleDay(index, checked) {
-  const saved = JSON.parse(
-    localStorage.getItem("prodejto_completed") || "{}"
-  );
-
-  saved[index] = checked;
-  localStorage.setItem("prodejto_completed", JSON.stringify(saved));
-
-  updatePlanProgress();
-}
-
-function updatePlanProgress() {
-  const checks = document.querySelectorAll(
-    "#plan-container input[type=checkbox]"
-  );
-
-  if (!checks.length) return;
-
-  const completed = [...checks].filter(input => input.checked).length;
-  const label = document.getElementById("plan-progress-label");
-  const bar = document.getElementById("plan-progress-bar");
-
-  if (label) label.textContent = `Splněno ${completed} ze ${checks.length} úkolů`;
-  if (bar) bar.style.width = `${completed / checks.length * 100}%`;
-}
-
-function resetPlanProgress() {
-  localStorage.removeItem("prodejto_completed");
-
-  document.querySelectorAll("#plan-container input[type=checkbox]")
-    .forEach(input => input.checked = false);
-
-  updatePlanProgress();
-            }
-
-  function copyContactMessage() {
-  const data = window.prodejtoCurrent;
-  const status = document.getElementById("copy-status");
-
-  if (!data) {
-    status.textContent = "Nejdříve prosím dokonči diagnostiku.";
-    return;
-  }
-
-  const results = data.results;
-
-  const message =
-`Ahoj Jano,
-
-vyzkoušela jsem diagnostiku PRODEJ TO! a ráda bych se informovala o možnosti individuálního rozboru svého prodeje.
-
-Moje hlavní priorita: ${results.top[0].name}.
-Další oblasti, které chci zlepšit: ${results.top[1].name} a ${results.top[2].name}.
-
-Ráda bych lépe prezentovala své produkty a oslovila vhodné zákazníky.
-
-Děkuji.`;
-
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(message)
-      .then(() => {
-        status.textContent =
-          "Zpráva je zkopírovaná. Můžeš ji vložit do e-mailu nebo zprávy.";
-      })
-      .catch(() => showCopyFallback(message));
-  } else {
-    showCopyFallback(message);
-  }
-}
-
-function showCopyFallback(message) {
-  const status = document.getElementById("copy-status");
-
-  status.innerHTML = "";
-
-  const label = document.createElement("p");
-  label.textContent =
-    "Zkopíruj následující text a pošli ho tam, kde se s Janou domluvíš:";
-
-  const textarea = document.createElement("textarea");
-  textarea.value = message;
-  textarea.readOnly = true;
-  textarea.style.width = "100%";
-  textarea.style.minHeight = "190px";
-  textarea.style.padding = "12px";
-  textarea.style.border = "1px solid #e9e1f5";
-  textarea.style.borderRadius = "12px";
-
-  status.appendChild(label);
-  status.appendChild(textarea);
-
-  textarea.focus();
-  textarea.select();
-}
-
-function resetDiagnostic() {
-  document.getElementById("diagnostic-form").reset();
-
-  document.getElementById("vysledky").classList.add("hidden");
-  document.getElementById("kontakt").classList.add("hidden");
-  document.getElementById("form-error").classList.add("hidden");
-
-  localStorage.removeItem("prodejto_answers");
-  localStorage.removeItem("prodejto_results");
-  localStorage.removeItem("prodejto_completed");
-
-  window.prodejtoCurrent = null;
-
-  updateProgress();
-
-  document.getElementById("diagnostika").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-}
-
-function restoreAnswers() {
-  try {
-    const savedAnswers = JSON.parse(
-      localStorage.getItem("prodejto_answers") || "null"
-    );
-
-    if (!savedAnswers) return;
-
-    questions.forEach(q => {
-      const answer = savedAnswers[q.id];
-
-      if (answer && Number.isInteger(answer.index)) {
-        const input = document.querySelector(
-          `input[name="${q.id}"][value="${answer.index}"]`
-        );
-
-        if (input) input.checked = true;
-      }
-    });
-
-    updateProgress();
-
-    const savedResults = JSON.parse(
-      localStorage.getItem("prodejto_results") || "null"
-    );
-
-    if (savedResults) {
-      renderResults(savedResults, savedAnswers);
-
-      document.getElementById("uvod").classList.add("hidden");
-      document.getElementById("diagnostika").classList.remove("hidden");
-      document.getElementById("vysledky").classList.remove("hidden");
-      document.getElementById("kontakt").classList.remove("hidden");
-
-      window.prodejtoCurrent = {
-        results: savedResults,
-        answers: savedAnswers
-      };
-    }
-  } catch (error) {
-    console.warn("Uložený postup se nepodařilo obnovit.", error);
-  }
-}
-
-function initApp() {
-  renderQuestions();
-  restoreAnswers();
-}
-
-document.addEventListener("DOMContentLoaded", initApp);
 </script>
-
 </body>
 </html>
